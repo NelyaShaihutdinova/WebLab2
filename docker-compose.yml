@@ -1,0 +1,10 @@
+version: '3'
+services:
+  backend:
+    image: quay.io/wildfly/wildfly
+    container_name: wildfly
+    restart: always
+    volumes:
+      - ./target/tester3-1.0-SNAPSHOT.war:/opt/jboss/wildfly/standalone/deployments/tester3_war_exploded.war
+    ports:
+      - "8080:8080"

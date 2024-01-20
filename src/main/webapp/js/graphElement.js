@@ -5,10 +5,10 @@ canvas.height = canvas.width;
 let w = canvas.width, h = canvas.height;
 
 let gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-gradient.addColorStop(0, "rgba(255,211,33,0.55)");
+gradient.addColorStop(0, "rgb(185,121,231)");
 
-let rValue
-let lineLength
+let rValue;
+let lineLength;
 
 function redrawGraph(rValueFun) {
     ctx.clearRect(0, 0, w, h);
@@ -61,15 +61,17 @@ function redrawGraph(rValueFun) {
     ctx.fillStyle = gradient;
     ctx.beginPath();
     ctx.moveTo(w / 2, h / 2);
-    ctx.arc(w / 2, h / 2, r, 1 / 2 * Math.PI, Math.PI, false);
-
-    ctx.lineTo(w / 2 - r, h / 2 - r);
-    ctx.lineTo(w / 2, h / 2 - r);
+    ctx.arc(w / 2, h / 2, r / 2, 1 / 2 * Math.PI, Math.PI, false);
+    ctx.lineTo(w / 2 - r, h / 2);
+    ctx.lineTo(w / 2 - r, h / 2 - r / 2);
+    ctx.lineTo(w / 2, h / 2 - r / 2);
     ctx.lineTo(w / 2, h / 2);
     ctx.lineTo(w / 2 + r / 2, h / 2);
-    ctx.lineTo(w / 2, h / 2 + r / 2);
     ctx.lineTo(w / 2, h / 2 + r);
+    ctx.lineTo(w / 2, h / 2 + r / 2);
     ctx.fill();
+    ctx.moveTo(w / 2, h / 2);
+    ctx.lineTo(w / 2 - r / 2, h / 2);
     ctx.stroke();
     ctx.closePath();
 
@@ -103,21 +105,19 @@ console.log(h)
 let xCoordinate;
 let yCoordinate;
 document.querySelector('#graph').onmousemove = function (event) {
-    event = event || window.event
-    if (typeof rValue !== 'string') {
-        xCoordinate = ((event.offsetX - w / 2) / ((w - w / 6.4) / 2) * rValue).toFixed(2)
-        yCoordinate = ((h / 2 - event.offsetY) / ((w - w / 6.4) / 2) * rValue).toFixed(2)
-        document.querySelector('#inputText').placeholder = yCoordinate
-        document.querySelector('#x').innerHTML = xCoordinate
-    }
+    xCoordinate = ((event.offsetX - w / 2) / ((w - w / 6.4) / 2) * rValue).toFixed(2)
+    yCoordinate = ((h / 2 - event.offsetY) / ((w - w / 6.4) / 2) * rValue).toFixed(2)
+    document.querySelector('#inputText').placeholder = yCoordinate
+    document.querySelector('#x').innerHTML = xCoordinate
 }
 document.querySelector('#graph').onclick = function () {
-    if (xCoordinate === undefined || yCoordinate === undefined) {
-        alert("select the radius")
-    } else {
-        console.log(typeof xCoordinate,xCoordinate, typeof yCoordinate, yCoordinate, typeof rValue, rValue)
-        send(xCoordinate, yCoordinate, rValue)
-    }
+    // if (xCoordinate === undefined || yCoordinate === undefined) {
+    //     alert("select the radius")
+    // } else {
+    console.log(xCoordinate);
+    console.log(yCoordinate);
+    send(xCoordinate, yCoordinate, rValue)
+    // }
 }
 
 function drawPoint(x, y, result) {

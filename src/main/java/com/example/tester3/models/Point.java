@@ -1,6 +1,5 @@
 package com.example.tester3.models;
 
-import java.util.Objects;
 
 public class Point {
     float x;
@@ -20,28 +19,15 @@ public class Point {
     }
 
     private boolean checkTriangle() {
-        return 0 <= x && x <= (float) r / 2 && (float) -r / 2 <= y && y <= 0 && Math.abs(y) + x <= (float) r / 2;
+        return 0 <= x && x <= (float) r / 2 && (float) -r  <= y && y <= 0 && Math.abs(y) / 2 + x <= (float) r / 2;
     }
 
     private boolean checkCircle() {
-        return x * x + y * y <= r * r && -r <= x && x <= 0 && 0 >= y && y >= -r;
+        return x * x + y * y <= r * r && -r / 2 <= x && x <= 0 && 0 >= y && y >= -r / 2;
     }
 
     private boolean checkSquare() {
-        return -r <= x && x <= 0 && 0 <= y && y <= r;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point) o;
-        return Float.compare(x, point.x) == 0 && Float.compare(y, point.y) == 0 && Float.compare(r, point.r) == 0 && isHit == point.isHit;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(x, y, r, isHit);
+        return -r <= x && x <= 0 && 0 <= y && y <= r / 2;
     }
 
     @Override

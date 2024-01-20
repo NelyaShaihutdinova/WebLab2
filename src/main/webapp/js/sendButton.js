@@ -13,18 +13,18 @@ function handleButtonClick() {
         x = option;
     } else {
         flag = false;
-        alert("x should be one of the following values: -3, -2, -1, 0, 1, 2, 3, 4, 5");
+        alert("x should be one of the following values: -5, -4, -3, -2, -1, 0, 1, 2, 3");
     }
 
     let coordinatesY = document.getElementById("inputText").value;
     if (coordinatesY !== '') {
         let checkY = Number(coordinatesY);
         if (!isNaN(checkY)) {
-            if (3 > checkY && checkY > -5) {
+            if (3 > checkY && checkY > -3) {
                 y = checkY;
             } else {
                 flag = false;
-                alert("y belongs to (-5; 3)");
+                alert("y belongs to (-3; 3)");
             }
         } else {
             flag = false;
@@ -71,8 +71,8 @@ async function send(x, y, r) {
 
 document.addEventListener("DOMContentLoaded", () => {
     if (!localStorage.getItem('rValue')) {
-        localStorage.setItem('rValue', "R")
-        rValue = "R"
+        localStorage.setItem('rValue', "5")
+        rValue = "5"
     } else {
         rValue = localStorage.getItem('rValue')
     }
